@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h2>{{ page_title }}</h2>
+
+    {% for member in company %}
+
+        <div class="row featurette">
+<!-- loop code to get alternating data in rows/columns -->
+        {% if loop.index % 2 !=0  %}
+
+            <div class="col-md-7" style="padding-right: 60px;">
+                <h3><a href="/about/{{ member.url }}">{{loop.index}}.{{ member.name }}</a></h3>
+                <p >{{ member.description }}</p>
+            </div>
+            <div class="col-md-5">
+                <img src="{{ member.image_source }}" alt="" class="featurette-image image-responsive" style="width:35vw;">
+            </div>
+        {% else %}
+            <div class="col-md-5">
+                <img src="{{ member.image_source }}" alt="" class="featurette-image image-responsive" style="width:35vw;">
+            </div>
+            <div class="col-md-7" style="padding-left: 60px;">
+                <h3><a href="/about/{{ member.url }}">{{loop.index}}.{{ member.name }}</a></h3>
+                <p>{{ member.description }}</p>
+            </div>
+        {% endif %}
+        </div>
+
+        {% if loop.index != loop.length %}
+            <hr class="featurette-divider">
+        {% endif %}
+
+    {% endfor %}
+
+{% endblock %}
